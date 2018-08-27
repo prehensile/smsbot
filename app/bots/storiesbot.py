@@ -7,7 +7,7 @@ _STORY_URL = "http://twentythreemillionstories.org/api/story/generate"
 class StoriesBot( bb.BaseBot ):
 
     def __init__( self ):
-        print( "StoriesBot init" )
+        pass
 
 
     def can_handle( self, message ):

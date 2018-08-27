@@ -1,6 +1,6 @@
-import os
-from flask import Flask, request
+import logging
 
+from flask import Flask, request
 
 import bothandler
 import nexmohandler
@@ -10,6 +10,7 @@ bot_handler = bothandler.BotHandler()
 sms_handler = nexmohandler.NexmoHandler()
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():
@@ -26,6 +27,5 @@ def api_sms_receive():
             message = message_out, 
             from_name = parsed['receiving_number']
         )
-        print( r )
-    #print( locals() )
+        logging.info( r )
     return "OK!"

@@ -1,7 +1,7 @@
-import importlib
-import bots
-import os, sys
 import logging
+import importlib
+import os, sys
+
 
 from bots.basebot import BaseBot
 
@@ -14,9 +14,9 @@ class BotHandler( object ):
 
     def load_bots( self ):
         logging.debug( "BotHandler.load_bots()...")
-        bots = []
+        loaded = []
         for fn in os.listdir( "bots" ):
-            if( fn.startswith("__") ):
+            if fn.startswith("__"):
                 continue
             mn = os.path.splitext(fn)[0]
             mn = "bots.%s" % mn
@@ -25,10 +25,10 @@ class BotHandler( object ):
                 try:
                     if( issubclass(val, BaseBot) and (val is not BaseBot) ):
                         bot = val()
-                        bots.append( bot )
+                        loaded.append( bot )
                 except:
                     pass
-        self._bots = bots
+        self._bots = loaded
         
 
     def handle( self, message ):
